@@ -27,4 +27,9 @@ def arp_display(pkt):
         if pkt[ARP].hwsrc == '34:d2:70:4f:d2:ba': # my dash button's mac addr
             toggle_lights()
 
-print sniff(prn=arp_display, filter="arp", store=0, count=0)
+
+while True:
+    try:
+        print sniff(prn=arp_display, filter="arp", store=0, count=0)
+    except Exception as e:
+        print "Error occurred: {}\n{}".format(e.errno, e.strerror)
